@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/UserRoutes.js";
+import authRouter from "./routes/AuthRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
   res.send("Referral System API");
 });
 app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
 
 app.use((req, res) => {
   res
