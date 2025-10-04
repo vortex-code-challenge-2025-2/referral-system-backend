@@ -44,4 +44,18 @@ export default class UserController {
       res.status(500).json({ error: error.message });
     }
   };
+
+  static profile = async (req, res) => {
+    if (req.user) {
+      res.status(200).json({
+        id: req.user._id,
+        name: req.user.name,
+        email: req.user.email,
+        points: req.user.points,
+        link: req.user.link,
+      });
+    } else {
+      res.status(404).json({ error: "User not found." });
+    }
+  };
 }
