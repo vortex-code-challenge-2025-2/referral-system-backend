@@ -25,7 +25,7 @@ A aplicação consiste em uma API RESTful construída com **Express.js**, respon
 -   [x] **Autenticação:** Endpoint de login que retorna um token de acesso (JWT) para proteger as rotas.
 -   [x] **Perfil de Usuário:** Rota protegida que retorna os dados do usuário logado (nome, pontuação, link).
 
-## 🚀 Tecnologias e dependências utilizadas
+## 🚀 Tecnologias Utilizadas
 
 -   **Node.js:** Ambiente de execução para o JavaScript no lado do servidor.
 -   **Express.js:** Framework principal para a construção da API, gerenciamento de rotas e middlewares.
