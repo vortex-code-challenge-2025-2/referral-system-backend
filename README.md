@@ -52,9 +52,45 @@ Siga os passos abaixo para rodar a API em seu ambiente local.
 
 ### Pré-requisitos
 
--   [Node.js](https://nodejs.org/) (versão 18 ou superior)
--   [MongoDB](https://www.mongodb.com/try/download/community) (ou uma instância em nuvem como o MongoDB Atlas)
--   Um gerenciador de pacotes como [NPM](https://www.npmjs.com/).
+Para executar este projeto em seu ambiente local, você precisará ter algumas ferramentas instaladas e configuradas. Siga os guias abaixo para cada uma delas.
+
+#### 1. Node.js e NPM
+
+O Node.js é o ambiente que executa o código JavaScript no servidor, e o NPM é o gerenciador de pacotes para o Node.js, usado para instalar as dependências do projeto.
+
+-   **Instalação:**
+    1.  Acesse o site oficial do Node.js: [https://nodejs.org/](https://nodejs.org/)
+    2.  Baixe e instale a versão **LTS (Long Term Support)**, que é a mais estável e recomendada.
+    3.  O NPM já vem incluído na instalação do Node.js, então não é necessário instalá-lo separadamente.
+
+-   **Verificação:**
+    Para confirmar que a instalação foi bem-sucedida, abra seu terminal e execute os seguintes comandos:
+    ```bash
+    # Deve retornar a versão do Node.js (ex: v18.18.0)
+    node -v
+    
+    # Deve retornar a versão do NPM (ex: 9.8.1)
+    npm -v
+    ```
+
+#### 2. MongoDB
+
+Você precisa de uma instância do banco de dados MongoDB. Existem duas maneiras principais de fazer isso: usando um serviço em nuvem (mais fácil) ou instalando localmente. Irei demonstrar como fazer pela nuvem.
+
+##### (MongoDB Atlas - Recomendado)
+
+Esta é a forma mais rápida de começar, pois não requer instalação na sua máquina.
+
+1.  **Crie uma Conta:** Acesse o [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) e crie uma conta gratuita.
+2.  **Crie um Cluster Gratuito:** Siga as instruções para criar um novo cluster. Você pode escolher o provedor de nuvem e a região de sua preferência. O tier `M0 Sandbox` é gratuito para sempre.
+3.  **Configure o Acesso:**
+    * **Database Access:** Crie um usuário e senha para o banco de dados. Anote-os, pois você os usará na string de conexão.
+    * **Network Access:** Adicione seu endereço IP à lista de permissões. Para um ambiente de desenvolvimento, a forma mais fácil é permitir o acesso de qualquer lugar, adicionando o IP `0.0.0.0/0`.
+4.  **Criar o DB e a Coleção**: Na barra lateral a esquerda, selecione "Overview" - "DATABASE" - "Browse Collections". Depois disso, basta clicar em "Create Database" e inserir como nome "referralSystemDB" e para nome de coleção, "users".
+5.  **Obtenha a String de Conexão:**
+    * No painel do seu cluster, clique em "Connect".
+    * Selecione a opção "MongoDB for VS Code".
+    * Copie a string de conexão fornecida e insira no `.env`(Explicarei na seção abaixo), mais especificamente na variável `DB_CONNECTION_STRING`. Vale lembrar, que no final da URI, deve-se inserir o nome do DB, no caso, seria algo dessa forma: "mongodb+srv://<user>:<password>@cluster.xxxxxxx.mongodb.net/referralSystemDB".
 
 ### Instalação
 
@@ -68,7 +104,7 @@ Siga os passos abaixo para rodar a API em seu ambiente local.
     ```
 3.  Crie um arquivo `.env` na raiz do projeto e adicione as variáveis de ambiente:
     ```
-    MONGO_URI="string_de_conexão_aqui"
+    DB_CONNECTION_STRING="string_de_conexão_aqui"
     PORT=3000
     JWT_SECRET="segredo_para_o_jwt"
     ```
