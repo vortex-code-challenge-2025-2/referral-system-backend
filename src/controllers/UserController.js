@@ -17,12 +17,12 @@ export default class UserController {
       });
 
       if (referralCode) {
-        const referringUser = User.findOne({ link: referralCode });
+        const referringUser = await User.findOne({ link: referralCode });
         if (referringUser) {
           referringUser.points++;
           await referringUser.save();
           console.log(
-            `Usuário ${referringUser.name} recebeu 1 ponto por indicação.`
+            `User ${referringUser.name} got 1 point.`
           );
         }
       }
@@ -33,15 +33,28 @@ export default class UserController {
         .json({ message: `User ${newUser.name} was successfully created!` });
     } catch (error) {
       console.error("Something wrong happened...", error);
+
       if (error.code === 11000) {
-        return res
-          .status(409)
-          .json({ error: "The e-mail is already registered." });
+        if (error.keyValue && error.keyValue.email) {
+          return res
+            .status(409)
+            .json({ error: "This e-mail already exists." });
+        }
+        if (error.keyValue && error.keyValue.link) {
+          return res
+            .status(500)
+            .json({ error: "Referral link error. Try again." });
+        }
+        return res.status(409).json({ error: "A unique camp already exists." });
       }
+
       if (error.name === "ValidationError") {
         return res.status(400).json({ error: error.message });
       }
-      res.status(500).json({ error: error.message });
+
+      res
+        .status(500)
+        .json({ error: "Internal Server Error, try again later." });
     }
   };
 
