@@ -1,6 +1,7 @@
 # Vortex Code Challenge 2025.2 - API do Sistema de Indicação (Backend)
 
-![Badge de Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
+![Badge do Desafio](https://img.shields.io/badge/Desafio-Laborat%C3%B3rio%20Vortex-blue?style=for-the-badge)
+![Badge de Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
 
 ## 📑 Índice
 
@@ -10,7 +11,6 @@
 - [🤔 Justificativa das Escolhas](#-justificativa-das-escolhas)
 - [⚙️ Como Executar o Projeto](#️-como-executar-o-projeto)
 - [🤝 Colaboração com IA](#-colaboração-com-ia)
-- [👨‍💻 Autor](#-autor)
 
 ## 📖 Sobre o Projeto
 
@@ -20,26 +20,31 @@ A aplicação consiste em uma API RESTful construída com **Express.js**, respon
 
 ## ✨ Funcionalidades da API
 
--   [ ] **Cadastro de Usuário:** Endpoint para criar um novo usuário, com senha hasheada e geração de um link de indicação único.
--   [ ] **Lógica de Indicação:** O endpoint de cadastro processa a referência, pontuando o usuário indicador.
--   [ ] **Autenticação:** Endpoint de login que retorna um token de acesso (JWT) para proteger as rotas.
--   [ ] **Perfil de Usuário:** Rota protegida que retorna os dados do usuário logado (nome, pontuação, link).
+-   [x] **Cadastro de Usuário:** Endpoint para criar um novo usuário, com senha hasheada e geração de um link de indicação único.
+-   [x] **Lógica de Indicação:** O endpoint de cadastro processa a referência, pontuando o usuário indicador.
+-   [x] **Autenticação:** Endpoint de login que retorna um token de acesso (JWT) para proteger as rotas.
+-   [x] **Perfil de Usuário:** Rota protegida que retorna os dados do usuário logado (nome, pontuação, link).
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias e dependências utilizadas
 
-| Módulo      | Tecnologias                                                                                                                                                                                                                         |
-| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Backend** | ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![MongoDB](https://img.shields.io/badge/MongoDB-%2347A248.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) |
+-   **Node.js:** Ambiente de execução para o JavaScript no lado do servidor.
+-   **Express.js:** Framework principal para a construção da API, gerenciamento de rotas e middlewares.
+-   **MongoDB:** Banco de dados NoSQL orientado a documentos, utilizado para armazenar os dados dos usuários.
+-   **Mongoose:** ODM (Object Data Modeling) para modelagem dos dados da aplicação e interação com o MongoDB.
+-   **CORS:** habilita o compartilhamento de recursos entre domínios diferentes. De maneira geral, permite que o backend responda requisições do frontend.
+-   **Nodemon:** ferramenta de desenvolvimento que reinicia a aplicação sempre que alguma alteração é feita nos arquivos do projeto.
+-   **JSON Web Token (JWT):** Para a criação de tokens de acesso, garantindo a segurança das rotas protegidas.
+-   **Bcrypt:** Biblioteca para hashing de senhas, fundamental para a segurança e armazenamento seguro das credenciais dos usuários.
+-   **Dotenv:** Para o gerenciamento de variáveis de ambiente, separando configurações sensíveis do código-fonte.
+-   **Nanoid:** Para a geração de IDs únicos e seguros, utilizado na criação dos links de indicação.
 
 ## 🤔 Justificativa das Escolhas
 
-A seleção de cada tecnologia foi pensada para atender aos requisitos do desafio e demonstrar conhecimento em ferramentas eficientes e consolidadas no mercado.
-
 ### Backend (Express.js)
-Optei pelo **Express.js** por sua natureza minimalista, flexível e por ser o framework de fato padrão do ecossistema Node.js. Para o escopo deste desafio, que exige uma API RESTful direta e com regras de negócio bem definidas, o Express oferece o controle necessário sem a complexidade de um framework mais opinativo. Essa escolha me permite construir a arquitetura da aplicação de forma mais granular, demonstrando um profundo entendimento do ciclo de vida de requisições HTTP em um ambiente Node.js.
+Optei pelo Express.js por sua natureza minimalista e flexível. Para o escopo deste desafio, que exige uma API RESTful direta com regras de negócio bem definidas em torno de uma única entidade, o Express oferece o controle necessário para construir a arquitetura da aplicação.
 
 ### Banco de Dados (MongoDB)
-Para a persistência de dados, escolhi o **MongoDB**. Dada a natureza simples da aplicação, com uma única entidade principal (`User`) e sem a necessidade de relacionamentos complexos, um banco de dados NoSQL se mostrou a opção mais ágil e direta. O formato de armazenamento em documentos (BSON) se integra perfeitamente ao ecossistema JavaScript, simplificando as operações de CRUD através de bibliotecas como o Mongoose.
+Para a persistência de dados, escolhi o **MongoDB** por sua agilidade e fácil integração com o ecossistema JavaScript. Como a aplicação possui uma única entidade principal (`User`) sem relacionamentos com outras entidades, um banco de dados NoSQL se mostrou a opção mais direta e eficiente para a resolução do desafio.
 
 ## ⚙️ Como Executar o Projeto
 
@@ -49,39 +54,44 @@ Siga os passos abaixo para rodar a API em seu ambiente local.
 
 -   [Node.js](https://nodejs.org/) (versão 18 ou superior)
 -   [MongoDB](https://www.mongodb.com/try/download/community) (ou uma instância em nuvem como o MongoDB Atlas)
--   Um gerenciador de pacotes como [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/).
+-   Um gerenciador de pacotes como [NPM](https://www.npmjs.com/).
 
-### Instalação e Execução
+### Instalação
 
+1.  Clone este repositório:
+    ```bash
+    git clone https://github.com/vortex-code-challenge-2025-2/referral-system-backend.git
+    ```
+2.  Navegue até a pasta do projeto:
+    ```bash
+    cd referral-system-backend
+    ```
+3.  Crie um arquivo `.env` na raiz do projeto e adicione as variáveis de ambiente:
+    ```
+    MONGO_URI="string_de_conexão_aqui"
+    PORT=3000
+    JWT_SECRET="segredo_para_o_jwt"
+    ```
+4.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+
+### Execução
 ```bash
-# 1. Clone este repositório
-git clone [URL_DO_SEU_REPOSITORIO_BACKEND]
-
-# 2. Navegue até o diretório
-cd [NOME_DA_PASTA_DO_PROJETO]
-
-# 3. Crie um arquivo .env na raiz do projeto e adicione as variáveis de ambiente
-# Exemplo:
-# MONGO_URI="mongodb://localhost:27017/vortex-challenge"
-# PORT=3000
-
-# 4. Instale as dependências
-npm install
-
-# 5. Rode a aplicação em modo de desenvolvimento
-npm run dev
-
-# O servidor estará rodando em http://localhost:3000 (ou na porta que você definiu)
+npm start
 ```
 
 ## 🤝 Colaboração com IA
 
-Conforme incentivado pelo edital, utilizei ferramentas de Inteligência Artificial como um parceiro de desenvolvimento. A principal IA utilizada foi o **Gemini (Google)**, atuando como um "arquiteto de software" e "mentor de código". A colaboração se deu em:
-- **Planejamento e Arquitetura:** Discussão sobre a stack, validação de ideias e pivô estratégico do NestJS para o Express.js para melhor se adequar ao escopo do projeto.
-- **Estruturação de Código:** Sugestões de organização de pastas e arquivos para uma API Express robusta.
-- **Criação de Templates:** Geração de templates de documentação, como este `README.md`.
-- **Tira-dúvidas:** Sanar dúvidas conceituais sobre Node.js, Mongoose e padrões de API REST.
+Conforme incentivado pelo edital, utilizei o **Gemini 2.5 pro(Google)** como uma ferramenta de colaboração e mentoria ao longo do desenvolvimento deste projeto. A interação ocorreu nas seguintes áreas:
+
+-   **Code Review:** A IA atuou como um revisor de código constante, sugerindo melhorias no tratamento de erros para fornecer respostas mais específicas da API, boas práticas, etc.
+
+-   **Construção do `README.md`:** A área em questão é autoexplicativa. O modelo me auxiliou na construção de um README.md harmônico e ao mesmo tempo bem explicativo.
 
 ## 👨‍💻 Autor
 
 Desenvolvido por **João Pedro Lima**.
+
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-pedro-lima-464398222/)
