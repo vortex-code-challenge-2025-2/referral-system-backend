@@ -124,7 +124,7 @@ Conforme incentivado pelo edital, utilizei o **Gemini 2.5 pro(Google)** como uma
 
 -   **Code Review:** A IA atuou como um revisor de código constante, sugerindo melhorias no tratamento de erros para fornecer respostas mais específicas da API, boas práticas, etc.
 
--   **Construção do `README.md`:** A área em questão é autoexplicativa. O modelo me auxiliou na construção de um README.md harmônico e ao mesmo tempo bem explicativo.
+-   **Construção do `README.md`:** A área em questão é autoexplicativa. O modelo me auxiliou na construção de um README.md harmônico e agradável.
 
 ## 👨‍💻 Autor
 
